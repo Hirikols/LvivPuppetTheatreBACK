@@ -20,7 +20,7 @@ namespace SoftServe.ITAcademy.BackendDubbingProject.Administration.Infrastructur
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Data Source=dubbing.db");
+            optionsBuilder.UseNpgsql("Host=10.26.0.215;Database=dubbing;Username=dubbing;Password=dubbing");
         }
     }
 }

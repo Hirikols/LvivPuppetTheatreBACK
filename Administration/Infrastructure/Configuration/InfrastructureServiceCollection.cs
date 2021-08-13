@@ -10,10 +10,10 @@ namespace SoftServe.ITAcademy.BackendDubbingProject.Administration.Infrastructur
     {
         public void RegisterDependencies(IServiceCollection services)
         {
-            const string connection = "Data Source=dubbing.db";
+            const string connection = "Host=10.26.0.215;Database=dubbing;Username=dubbing;Password=dubbing";
 
             services.AddDbContext<DubbingContext>(options =>
-                options.UseSqlite(connection, b => b.MigrationsAssembly("Web")));
+                options.UseNpgsql(connection, b => b.MigrationsAssembly("Web")));
 
             services.AddScoped<DbContext, DubbingContext>();
 
