@@ -4,9 +4,8 @@ EXPOSE 80
 
 FROM microsoft/dotnet:2.2-sdk AS build
 WORKDIR /src
-COPY ["Web/Web.csproj", "Web/"]
-RUN dotnet restore "Web/Web.csproj"
 COPY . .
+RUN dotnet restore "Web/Web.csproj"
 WORKDIR /src/Web
 RUN dotnet ef migrations add InitialCreate
 RUN dotnet ef database update InitialCreate
