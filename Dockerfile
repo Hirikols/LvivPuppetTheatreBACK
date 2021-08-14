@@ -6,7 +6,7 @@ FROM microsoft/dotnet:2.2-sdk AS build
 WORKDIR /src
 COPY . .
 RUN dotnet restore "Web/Web.csproj"
-WORKDIR /src/Web
+WORKDIR /src/Web/
 RUN dotnet ef migrations add InitialCreate
 RUN dotnet ef database update InitialCreate
 RUN dotnet build "Web.csproj" -c Release -o /app
