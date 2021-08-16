@@ -16,8 +16,8 @@ RUN dotnet publish "Web.csproj" -c Release -o /app
 
 FROM base AS final
 WORKDIR /app
-# RUN mkdir AudioFiles
-# COPY ./Web/AudioFiles ./AudioFiles
+RUN mkdir AudioFiles
+COPY ./Web/AudioFiles ./AudioFiles
 COPY --from=publish /app .
 ENTRYPOINT ["dotnet", "Web.dll"]
 
