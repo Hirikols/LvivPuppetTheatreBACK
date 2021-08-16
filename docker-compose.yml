@@ -14,7 +14,8 @@ services:
       - POSTGRES_PASSWORD=dubbing
   back:
     build: .
-    ports: "80:5000"
+    ports: 
+      - "80:5000"
     depends_on: 
       - db
     
