@@ -12,5 +12,17 @@ services:
       - POSTGRES_DB=dubbing
       - POSTGRES_USER=dubbing
       - POSTGRES_PASSWORD=dubbing
-  
+  front:
+    build: ./LvivPuppetTheatreFRONT
+    ports:
+      - "3000:3000"
+    depends_on: 
+      - "back"
+  back:
+    build: ./LvivPuppetTheatreBACK
+    ports: 
+      - "5000:5000"
+    depends_on: 
+        - "db"
+    
     
