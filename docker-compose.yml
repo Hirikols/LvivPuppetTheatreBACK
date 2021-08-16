@@ -30,7 +30,7 @@ services:
   back:
     build: ./LvivPuppetTheatreBACK
     ports: 
-      - "5000:5000"
+      - "80:5000"
     depends_on: 
         - "db"
     networks: 
