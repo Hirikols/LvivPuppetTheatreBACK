@@ -8,7 +8,7 @@ COPY . .
 RUN dotnet restore "Web/Web.csproj"
 WORKDIR /src/Web/
 RUN dotnet ef migrations add InitialCreate
-RUN dotnet ef database update InitialCreate
+#RUN dotnet ef database update InitialCreate
 RUN dotnet build "Web.csproj" -c Release -o /app
 
 FROM build AS publish
