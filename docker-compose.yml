@@ -12,10 +12,5 @@ services:
       - POSTGRES_DB=dubbing
       - POSTGRES_USER=dubbing
       - POSTGRES_PASSWORD=dubbing
-  back:
-    build: .
-    ports: 
-      - "80:5000"
-    depends_on: 
-      - db
+  
     
