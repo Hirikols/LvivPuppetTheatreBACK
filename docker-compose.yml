@@ -12,7 +12,7 @@ services:
     ports: 
       - "5432:5432"
     volumes: 
-      - ./data/db:/var/lib/postgresql/data
+      - ./dubbing.sql:/docker-entrypoint-initdb.d/dubbing.sql
     environment: 
       - POSTGRES_DB=dubbing
       - POSTGRES_USER=dubbing
