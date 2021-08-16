@@ -12,7 +12,7 @@ services:
     ports: 
       - "5432:5432"
     volumes: 
-      - ./dubbing.sql:/docker-entrypoint-initdb.d/dubbing.sql
+      - ./dump.sql:/docker-entrypoint-initdb.d/dump.sql
     environment: 
       - POSTGRES_DB=dubbing
       - POSTGRES_USER=dubbing
@@ -28,6 +28,7 @@ services:
     networks: 
       - theatre
   back:
+    restart: always
     build: ./LvivPuppetTheatreBACK
     ports: 
       - "5000:80"
