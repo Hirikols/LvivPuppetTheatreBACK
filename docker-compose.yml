@@ -1,5 +1,10 @@
 version: "3.9"
 
+networks: 
+  theatre:
+    driver: bridge
+
+
 services: 
   db:
     image: postgres
@@ -12,17 +17,23 @@ services:
       - POSTGRES_DB=dubbing
       - POSTGRES_USER=dubbing
       - POSTGRES_PASSWORD=dubbing
+    networks: 
+      - theatre
   front:
     build: ./LvivPuppetTheatreFRONT
     ports:
       - "3000:3000"
     depends_on: 
       - "back"
+    networks: 
+      - theatre
   back:
     build: ./LvivPuppetTheatreBACK
     ports: 
       - "5000:5000"
     depends_on: 
         - "db"
+    networks: 
+      - theatre
     
     
