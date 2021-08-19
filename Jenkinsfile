@@ -7,6 +7,11 @@ pipeline{
 
     stages{
         stage('Compile App'){
+            agent {
+                docker{
+                    image 'microsoft/dotnet:2.2-sdk'
+                }
+            }
             steps{
                 sh 'dotnet restore '
                 sh 'dotnet run --project=Web/Web.csproj --urls=http://0.0.0.0:5000'
