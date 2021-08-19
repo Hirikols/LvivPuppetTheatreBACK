@@ -9,6 +9,7 @@ RUN dotnet restore "Web/Web.csproj"
 WORKDIR /src/Web/
 #RUN dotnet ef migrations add InitialCreate
 #RUN dotnet ef database update InitialCreate
+# пофіксити міграцію або просто видалити її з проекту
 RUN dotnet build "Web.csproj" -c Release -o /app
 
 FROM build AS publish
@@ -16,6 +17,7 @@ RUN dotnet publish "Web.csproj" -c Release -o /app
 
 FROM base AS final
 WORKDIR /app
+#пофіксити помилку з audiofiles щоб не гнати ці команди в докер білді
 RUN mkdir AudioFiles
 COPY ./Web/AudioFiles ./AudioFiles
 COPY --from=publish /app .
