@@ -15,15 +15,25 @@ pipeline{
                 }
             }
             steps{
-                sh 'dotnet restore '
-                sh 'dotnet run --project=Web/Web.csproj --urls=http://0.0.0.0:5000'
+                sh 'dotnet restore'
+                sh 'dotnet build "Web/Web.csproj" -c Release'
             }
         }
+
         stage('Run Tests'){
+             agent {
+                docker{
+                    image 'microsoft/dotnet:2.2-sdk'
+                }
+            }
             steps{
+                sh 'dotnet restore'
                 sh 'dotnet test'
             }
         }
+        // stage('Clean Docker'){
+
+        // }
         stage('SonarQube'){
             steps{
                 withSonarQubeEnv('Sonar'){
