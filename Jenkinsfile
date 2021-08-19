@@ -3,7 +3,9 @@ pipeline{
 
     environment {
         scannerHome = tool 'sonar-scanner'
+        DOTNET_CLI_HOME = "/tmp/DOTNET_CLI_HOME"
     }
+   
 
     stages{
         stage('Compile App'){
