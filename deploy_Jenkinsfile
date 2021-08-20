@@ -8,7 +8,7 @@ parameters{
     stages {
         stage('PULL IMAGE FROM REGISTRY') {
             steps {
-                sh 'docker pull registry.hiriko.local/back:${TAG_BACK}'
+                sh '~/docker pull registry.hiriko.local/back:${TAG_BACK}'
             }
         }
         // stage('Get docker-compose file'){
