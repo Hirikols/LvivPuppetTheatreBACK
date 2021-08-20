@@ -19,8 +19,8 @@ pipeline{
         }
         stage('Push images to registry'){
             steps{
-                sh 'docker tag backend_build_back:latest registry.hiriko.local/back:${BUILD_NUMBER}'
-                sh 'docker push registry.hiriko.local/back:${BUILD_NUMBER}'
+                sh 'docker tag backend_build_back:latest registry.hiriko.local:5000/back:${BUILD_NUMBER}'
+                sh 'docker push registry.hiriko.local:5000/back:${BUILD_NUMBER}'
             }
         }
         stage('Stop docker images'){
