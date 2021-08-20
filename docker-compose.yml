@@ -30,7 +30,7 @@ services:
   #     - theatre
   back:
     restart: always
-    build: ./LvivPuppetTheatreBACK
+    build: .
     ports: 
       - "5000:80"
     depends_on: 
