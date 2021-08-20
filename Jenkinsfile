@@ -31,10 +31,12 @@ pipeline{
                 sh 'dotnet test'
             }
         }
-        // stage('Clean Docker'){
-
-        // }
+    
         stage('SonarQube'){
+            options{
+                timeout(time: 5, unit: 'MINUTES')
+                retry(2)
+            }
             steps{
                 withSonarQubeEnv('Sonar'){
                     sh "${scannerHome}/bin/sonar-scanner \

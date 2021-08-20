@@ -6,7 +6,7 @@ networks:
 
 
 services: 
-  db:
+  db_postgre:
     image: postgres
     restart: always
     ports: 
@@ -20,14 +20,14 @@ services:
       - POSTGRES_PASSWORD=dubbing
     networks: 
       - theatre
-  front:
-    build: ./LvivPuppetTheatreFRONT
-    ports:
-      - "3000:3000"
-    depends_on: 
-      - "back"
-    networks: 
-      - theatre
+  # front:
+  #   build: ./LvivPuppetTheatreFRONT
+  #   ports:
+  #     - "3000:3000"
+  #   depends_on: 
+  #     - "back"
+  #   networks: 
+  #     - theatre
   back:
     restart: always
     build: ./LvivPuppetTheatreBACK
