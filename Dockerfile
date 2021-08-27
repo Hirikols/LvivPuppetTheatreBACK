@@ -1,8 +1,8 @@
-FROM microsoft/dotnet:2.2-aspnetcore-runtime AS base
+FROM registry.hiriko.local:5000/microsoft/dotnet:2.2-aspnetcore-runtime AS base
 WORKDIR /app
 EXPOSE 80
 
-FROM microsoft/dotnet:2.2-sdk AS build
+FROM registry.hiriko.local:5000/microsoft/dotnet:2.2-sdk AS build
 WORKDIR /src
 COPY . .
 RUN dotnet restore "Web/Web.csproj"
