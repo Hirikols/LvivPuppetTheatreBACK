@@ -29,6 +29,7 @@ pipeline{
             steps{
                 sh 'docker-compose stop '
                 sh 'docker-compose rm -f '
+                sh 'docker-compose down --volumes'
                 sh 'docker volume rm $(docker volume ls -q)'
                 sh 'docker image rm $(docker image ls -q) -f'
             }
