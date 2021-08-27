@@ -17,7 +17,7 @@ set row_security = off;
 
 set default_tablespace = '';
 
-set default_table_access_method = heap;
+-- set default_table_access_method = heap;
 
 create table public."Audio" (
     "Id" integer NOT NULL,
