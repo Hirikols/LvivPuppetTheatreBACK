@@ -9,6 +9,7 @@ parameters{
         stage('PULL IMAGE FROM REGISTRY') {
             steps {
                 sh 'docker pull registry.hiriko.local:5000/back:${TAG_BACK}'
+                sh 'docker pull registry.hiriko.local:5000/db_postgre:${TAG_BACK}'
             }
         }
         // stage('Get docker-compose file'){
@@ -16,11 +17,11 @@ parameters{
         //         //
         //     }
         // }
-        stage('BUILD IMAGES') {
-            steps {
-                sh "docker-compose -f deploy.yml build"
-            }
-        }
+        // stage('BUILD IMAGES') {
+        //     steps {
+        //         sh "docker-compose -f deploy.yml build"
+        //     }
+        // }
         stage('STOP RUNNING CONTAINERS') {
             steps {
                 sh 'docker container rm -f backend'
