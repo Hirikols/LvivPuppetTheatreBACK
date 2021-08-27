@@ -11,7 +11,7 @@ pipeline{
         stage('Compile App'){
             agent {
                 docker{
-                    image 'microsoft/dotnet:2.2-sdk'
+                    image 'registry.hiriko.local:5000/microsoft/dotnet:2.2-sdk'
                 }
             }
             steps{
@@ -23,7 +23,7 @@ pipeline{
         stage('Run Tests'){
              agent {
                 docker{
-                    image 'microsoft/dotnet:2.2-sdk'
+                    image 'registry.hiriko.local:5000/microsoft/dotnet:2.2-sdk'
                 }
             }
             steps{
