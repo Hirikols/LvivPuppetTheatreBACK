@@ -17,10 +17,10 @@ services:
     # volumes: 
     #   - ./dubbing.sql:/docker-entrypoint-initdb.d/dubbing.sql
     #   #добав sql для данних
-    # environment: 
-    #   - POSTGRES_DB=dubbing
-    #   - POSTGRES_USER=dubbing
-    #   - POSTGRES_PASSWORD=dubbing
+    environment: 
+      - POSTGRES_DB=dubbing
+      - POSTGRES_USER=dubbing
+      - POSTGRES_PASSWORD=dubbing
     networks: 
       - theatre
   # front:
