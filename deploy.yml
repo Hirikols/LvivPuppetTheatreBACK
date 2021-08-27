@@ -7,7 +7,7 @@ networks:
 
 services: 
   db_postgre:
-    image: postgres:11.2-alpine
+    image: postgres
     container_name: db_postgre
     restart: always
     ports: 
