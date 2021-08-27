@@ -59,7 +59,7 @@ create sequence public."Languages_Id_seq"
 
 alter table public."Languages_Id_seq" owner to dubbing;
 
-alter sequence public."Languages_Id_seq" owned by public."Languages"."Id"
+alter sequence public."Languages_Id_seq" owned by public."Languages"."Id";
 
 create table public."Performances" (
     "Id" integer not null,
@@ -79,7 +79,7 @@ create sequence public."Performances_Id_seq"
 
 alter table public."Performances_Id_seq" owner to dubbing;
 
-alter sequence public."Performances_Id_seq" owned by public."Performances"."Id"
+alter sequence public."Performances_Id_seq" owned by public."Performances"."Id";
 
 create table public."Speeches" (
     "Id" integer not null,
