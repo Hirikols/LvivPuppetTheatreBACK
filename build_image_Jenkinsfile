@@ -31,7 +31,7 @@ pipeline{
                 sh 'docker rm $(docker ps -aq) '
                 sh 'docker network prune -f'
                 sh 'docker rmi -f $(docker images --filter dangling=true -qa)'
-                sh 'docker volume rm $(docker volume ls --filter dangling=true -q)'
+                //sh 'docker volume rm $(docker volume ls --filter dangling=true -q)'
                 sh 'docker rmi -f $(docker images -qa)'
             }
         }
