@@ -6,27 +6,17 @@ networks:
 
 
 services: 
-  db_postgre:
-    build: 
-      context: .
-      dockerfile: db.Dockerfile
-    restart: always
-    ports: 
-      - "5432:5432"
-    volumes: 
-      - ./var/pgdata:/var/lib/postgresql/data
-    environment: 
-      - POSTGRES_DB=dubbing
-      - POSTGRES_USER=dubbing
-      - POSTGRES_PASSWORD=dubbing
-    networks: 
-      - theatre
-  # front:
-  #   build: ./LvivPuppetTheatreFRONT
-  #   ports:
-  #     - "3000:3000"
-  #   depends_on: 
-  #     - "back"
+  # db_postgre:
+  #   images: postgresql:11.2-alpine
+  #   restart: always
+  #   ports: 
+  #     - "5432:5432"
+  #   volumes: 
+  #     - ./var/pgdata:/var/lib/postgresql/data
+  #   environment: 
+  #     - POSTGRES_DB=dubbing
+  #     - POSTGRES_USER=dubbing
+  #     - POSTGRES_PASSWORD=dubbing
   #   networks: 
   #     - theatre
   back:

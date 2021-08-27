@@ -9,7 +9,6 @@ parameters{
         stage('PULL IMAGE FROM REGISTRY') {
             steps {
                 sh 'docker pull registry.hiriko.local:5000/back:${TAG_BACK}'
-                sh 'docker pull registry.hiriko.local:5000/db_postgre:${TAG_BACK}'
             }
         }
         // stage('Get docker-compose file'){

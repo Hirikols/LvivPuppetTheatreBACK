@@ -1,3 +1,9 @@
+-- create user dubbing with encrypted password 'dubbing';
+
+-- create database dubbing;
+-- grant all privileges on database dubbing to dubbing;
+-- alter database dubbing owner to dubbing;
+
 set statement_timeout = 0;
 set lock_timeout = 0;
 set idle_in_transaction_session_timeout = 0;

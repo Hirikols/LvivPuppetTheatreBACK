@@ -7,15 +7,13 @@ networks:
 
 services: 
   db_postgre:
-    image: registry.hiriko.local:5000/db_postgre:${TAG_BACK}
+    image: postgresql:11.2-alpine
     container_name: db_postgre
     restart: always
     ports: 
       - "5432:5432"
     volumes: 
-      - ./var/pgdata:/var/lib/postgresql/data
-    # volumes: 
-    #   - ./dubbing.sql:/docker-entrypoint-initdb.d/dubbing.sql
+      - ./dubbing.sql:/docker-entrypoint-initdb.d/dubbing.sql
     #   #добав sql для данних
     environment: 
       - POSTGRES_DB=dubbing
