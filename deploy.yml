@@ -8,6 +8,7 @@ networks:
 services: 
   db_postgre:
     image: postgres
+    container_name: db_postgre
     restart: always
     ports: 
       - "5432:5432"
