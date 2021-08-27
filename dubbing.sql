@@ -25,7 +25,7 @@ create table public."Audio" (
     "OriginalText" text not null,
     "Duration" integer not null,
     "SpeechId" integer not null,
-    "LanguageId" integer not null,
+    "LanguageId" integer not null
 );
 
 alter table public."Audio" owner to dubbing;
