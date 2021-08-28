@@ -7,7 +7,7 @@ networks:
 
 services: 
   db_postgre:
-    images: registry.hiriko.local:5000/postgresql:11.2-alpine
+    image: registry.hiriko.local:5000/postgres:11.2-alpine
     container_name: dev_db
     restart: always
     ports: 
