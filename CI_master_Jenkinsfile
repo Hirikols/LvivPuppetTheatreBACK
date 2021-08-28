@@ -40,7 +40,7 @@ options {
         }
         stage('Push images to registry'){
             steps{
-                sh 'docker tag dev_back:latest registry.hiriko.local:5000/back:${BUILD_NUMBER}'
+                sh 'docker tag ci_back_back:latest registry.hiriko.local:5000/back:${BUILD_NUMBER}'
                 sh 'docker push registry.hiriko.local:5000/back:${BUILD_NUMBER}'
             }
         }
