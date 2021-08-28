@@ -1,0 +1,58 @@
+pipeline{
+    agent any
+options {
+    disableConcurrentBuilds()
+    buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '5'))
+}
+   stages{
+        stage('Pull base images'){
+            options{
+                timeout( time: 5 , unit: 'MINUTES')
+            }
+            steps{
+                sh 'docker pull registry.hiriko.local:5000/microsoft/dotnet:2.2-sdk'
+                sh 'docker pull registry.hiriko.local:5000/microsoft/dotnet:2.2-aspnetcore-runtime'
+            }
+        }
+        stage('Build images'){
+            options{
+                timeout(time: 5 , unit: 'MINUTES')
+            }
+            steps{
+                sh 'docker-compose -f Dev.backend.yml build'
+            }
+        }
+        stage('Run Containers'){
+            options{
+                timeout(time: 5 , unit: 'MINUTES')
+            }
+            steps{
+                sh 'docker-compose -f Dev.backend.yml up -d'
+            }
+        }
+        stage('Test service'){
+            options{
+                timeout( time: 2 , unit: "MINUTES")
+            }
+            steps{
+                sh './check_service'
+            }
+        }
+        stage('Stop docker images'){
+            steps{
+                sh 'docker stop $(docker ps -aq) '
+                sh 'docker rm $(docker ps -aq) '
+                sh 'docker network prune -f'
+            }
+        }
+    }
+    post{
+        always{
+            cleanWs()
+        }
+        aborted {
+            //slackSend 
+            echo 'bad'
+        }
+    }
+}

@@ -7,39 +7,32 @@ networks:
 
 services: 
   db_postgre:
-    image: postgres:11.2-alpine
-    container_name: db_postgre
+    images: postgresql:11.2-alpine
+    container_name: dev_db
     restart: always
     ports: 
       - "5432:5432"
     volumes: 
       - ./dubbing.sql:/docker-entrypoint-initdb.d/dubbing.sql
-    #   #добав sql для данних
     environment: 
       - POSTGRES_DB=dubbing
       - POSTGRES_USER=dubbing
       - POSTGRES_PASSWORD=dubbing
     networks: 
       - theatre
-  # front:
-  #   build: ./LvivPuppetTheatreFRONT
-  #   ports:
-  #     - "3000:3000"
-  #   depends_on: 
-  #     - "back"
-  #   networks: 
-  #     - theatre
+  
   back:
+    restart: always
+    container_name: dev_back
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports: 
+      - "6222:80"
     depends_on: 
         - "db_postgre"
-    image: registry.hiriko.local:5000/back:${TAG_BACK}
-    container_name: backend 
-    ports: 
-      - "5000:80"
+    command: ["./wait-for-postgresql.sh", "db_postgre", "python", "app.py"]
     networks: 
       - theatre
-    # environment: 
-    #   -
-    # volumes:
-    #   -
+    
     

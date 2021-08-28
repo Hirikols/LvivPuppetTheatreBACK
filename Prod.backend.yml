@@ -1,0 +1,33 @@
+version: "3.9"
+
+networks: 
+  theatre:
+    driver: bridge
+
+
+services: 
+  db_postgre:
+    image: registry.hiriko.local:5000/postgres:11.2-alpine
+    container_name: db_postgre
+    restart: always
+    ports: 
+      - "5432:5432"
+    volumes: 
+      - ./dubbing.sql:/docker-entrypoint-initdb.d/dubbing.sql
+      - postgre_db:/var/lib/postgresql/data
+    environment: 
+      - POSTGRES_DB=dubbing
+      - POSTGRES_USER=dubbing
+      - POSTGRES_PASSWORD=dubbing
+    networks: 
+      - theatre
+  back:
+    depends_on: 
+        - "db_postgre"
+    image: registry.hiriko.local:5000/back:${TAG_BACK}
+    container_name: backend 
+    ports: 
+      - "5000:80"
+    networks: 
+      - theatre
+    

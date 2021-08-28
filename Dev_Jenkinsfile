@@ -1,0 +1,89 @@
+pipeline {
+    agent any
+options {
+    disableConcurrentBuilds()
+    buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '5'))
+}
+environment {
+        scannerHome = tool 'sonar-scanner'
+        DOTNET_CLI_HOME = "/tmp/DOTNET_CLI_HOME"
+    }
+    stages{
+        
+        stage('Pull base images'){
+            options{
+                timeout(time: 2 , unit: 'MINUTES')
+            }
+            steps{
+                sh 'docker pull registry.hiriko.local:5000/microsoft/dotnet:2.2-sdk'
+            }
+        }
+        stage('Compile App'){
+            agent {
+                docker{
+                    image 'registry.hiriko.local:5000/microsoft/dotnet:2.2-sdk'
+                }
+            }
+            options{
+                timeout(time: 10 , unit: 'MINUTES')
+            }
+            steps{
+                sh 'dotnet restore'
+                sh 'dotnet build "Web/Web.csproj" -c Release'
+            }
+        }
+
+        stage('Run Tests'){
+             agent {
+                docker{
+                    image 'registry.hiriko.local:5000/microsoft/dotnet:2.2-sdk'
+                }
+            }
+            options{
+                timeout(time: 10 , unit: 'MINUTES')
+            }
+            steps{
+                sh 'dotnet test'
+            }
+        }
+    
+        stage('SonarQube'){
+            options{
+                timeout(time: 5, unit: 'MINUTES')
+                retry(2)
+            }
+            steps{
+                withSonarQubeEnv('Sonar'){
+                    sh "${scannerHome}/bin/sonar-scanner \
+                    -Dsonar.projectKey=TheareBack \
+                    -Dsonar.sources=. "
+                }
+            }
+        }
+        stage('Quality gate') {
+             options{
+                 timeout(time: 1 , unit : 'MINUTES')
+                 retry(2)
+            }
+            steps {
+                qualitygate = waitForQualityGate()
+                if (qualitygate.status != "OK") {
+                    currentBuild.result = "FAILURE"
+                    // slackSend
+                }
+            }
+        }
+    }
+    post{
+        always{
+            cleanWs()
+        }
+        success{
+            build job: 'Dev_build' , propagate: false
+        }
+        aborted{
+            //slackSend
+            echo 'bad'
+        }
+    }
+}
