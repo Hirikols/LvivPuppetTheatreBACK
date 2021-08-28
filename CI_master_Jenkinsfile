@@ -48,11 +48,11 @@ options {
     post{
         always{
             cleanWs()
-            sh 'docker stop $(docker ps -aq) '
-            sh 'docker rm $(docker ps -aq) '
-            sh 'docker network prune -f'
+            // sh 'docker stop $(docker ps -aq) '
+            // sh 'docker rm $(docker ps -aq) '
+            // sh 'docker network prune -f'
             sh 'docker image rm $(docker image ls -q) -f'
-            sh 'docker volume rm $(docker volume ls --filter dangling=true -q)'
+            // sh 'docker volume rm $(docker volume ls --filter dangling=true -q)'
         }
         aborted {
             //slackSend 
