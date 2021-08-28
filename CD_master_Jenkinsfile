@@ -1,5 +1,5 @@
 pipeline{
-    agent {'Deploy'}
+    agent { label 'Deploy'}
 options {
     disableConcurrentBuilds()
     buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '5'))
