@@ -35,7 +35,7 @@ options {
                 timeout( time: 2 , unit: "MINUTES")
             }
             steps{
-                sh './check_service.sh'
+                sh 'bash check_service.sh'
             }
         }
         stage('Stop docker images'){
