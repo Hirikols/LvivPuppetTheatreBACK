@@ -38,17 +38,22 @@ options {
                 sh 'bash check_service.sh'
             }
         }
-        stage('Stop docker images'){
-            steps{
-                sh 'docker stop $(docker ps -aq) '
-                sh 'docker rm $(docker ps -aq) '
-                sh 'docker network prune -f'
-            }
-        }
+        // stage('Stop docker images'){
+        //     steps{
+        //         sh 'docker stop $(docker ps -aq) '
+        //         sh 'docker rm $(docker ps -aq) '
+        //         sh 'docker network prune -f'
+        //         sh 'docker image rm $(docker image ls -q) -f'
+        //     }
+        // }
     }
     post{
         always{
             cleanWs()
+            sh 'docker stop $(docker ps -aq) '
+            sh 'docker rm $(docker ps -aq) '
+            sh 'docker network prune -f'
+            sh 'docker image rm $(docker image ls -q) -f'
         }
         aborted {
             //slackSend 
