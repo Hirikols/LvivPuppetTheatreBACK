@@ -28,7 +28,7 @@ services:
       context: .
       dockerfile: Dockerfile
     ports: 
-      - "6222:80"
+      - "5000:80"
     depends_on: 
         - "db_postgre"
     command: ["./wait-for-postgresql.sh", "db_postgre", "python", "app.py"]
