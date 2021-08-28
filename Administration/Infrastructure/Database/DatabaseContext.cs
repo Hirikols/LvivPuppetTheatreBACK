@@ -20,7 +20,7 @@ namespace SoftServe.ITAcademy.BackendDubbingProject.Administration.Infrastructur
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql("Host=10.26.0.173;Database=dubbing;Username=dubbing;Password=dubbing");
+            optionsBuilder.UseNpgsql("Host=10.26.0.230;Database=dubbing;Username=dubbing;Password=dubbing");
         }
     }
 }
