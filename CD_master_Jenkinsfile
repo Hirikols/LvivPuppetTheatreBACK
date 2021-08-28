@@ -25,6 +25,14 @@ parameters{
                 sh 'docker-compose -f Prod.backend.yml up -d'
             }
         }
+        stage('Test service'){
+            options{
+                timeout( time: 2 , unit: "MINUTES")
+            }
+            steps{
+                sh 'bash check_service.sh'
+            }
+        }
     }
     post { 
         always { 
@@ -33,6 +41,7 @@ parameters{
         aborted {
             //slackSend 
             echo 'bad'
+            
         }
         success{
             //slackSend
