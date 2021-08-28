@@ -59,6 +59,7 @@ options {
             sh 'docker rm $(docker ps -aq) '
             sh 'docker network prune -f'
             sh 'docker image rm $(docker image ls -q) -f'
+            sh 'docker volume rm $(docker volume ls --filter dangling=true -q)'
         }
         aborted {
             //slackSend 
