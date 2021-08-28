@@ -66,10 +66,12 @@ environment {
                  retry(2)
             }
             steps {
-                qualitygate = waitForQualityGate()
-                if (qualitygate.status != "OK") {
-                    currentBuild.result = "FAILURE"
-                    // slackSend
+                script{
+                    qualitygate = waitForQualityGate()
+                    if (qualitygate.status != "OK") {
+                        currentBuild.result = "FAILURE"
+                        // slackSend
+                    }    
                 }
             }
         }
