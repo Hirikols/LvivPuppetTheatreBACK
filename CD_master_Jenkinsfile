@@ -22,7 +22,7 @@ parameters{
         }
         stage('RUN SERVICES') {
             steps {
-                sh 'docker-compose -f prod.backend.yml up -d'
+                sh 'docker-compose -f Prod.backend.yml up -d'
             }
         }
     }
