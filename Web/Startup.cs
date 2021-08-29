@@ -41,7 +41,7 @@ namespace SoftServe.ITAcademy.BackendDubbingProject.Web
                     builder =>
                     {
                         builder
-                            .WithOrigins("10.26.0.230:3000", "http://10.26.0.230:3000")
+                            .SetIsOriginAllowed(host => true)
                             .AllowAnyMethod()
                             .AllowAnyHeader()
                             .AllowCredentials();
