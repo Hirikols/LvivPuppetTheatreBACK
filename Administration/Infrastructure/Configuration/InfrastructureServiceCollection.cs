@@ -10,7 +10,7 @@ namespace SoftServe.ITAcademy.BackendDubbingProject.Administration.Infrastructur
     {
         public void RegisterDependencies(IServiceCollection services)
         {
-            const string connection = "Host=10.26.0.230;Database=dubbing;Username=dubbing;Password=dubbing";
+            const string connection = "Host=db_postgre;Database=dubbing;Username=dubbing;Password=dubbing";
 
             services.AddDbContext<DubbingContext>(options =>
                 options.UseNpgsql(connection, b => b.MigrationsAssembly("Web")));
