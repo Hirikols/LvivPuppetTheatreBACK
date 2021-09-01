@@ -16,9 +16,9 @@ services:
       - ./dubbing.sql:/docker-entrypoint-initdb.d/dubbing.sql
       - postgre_db:/var/lib/postgresql/data
     environment: 
-      - POSTGRES_DB=dubbing
-      - POSTGRES_USER=dubbing
-      - POSTGRES_PASSWORD=dubbing
+      - POSTGRES_DB=${postgres_db}
+      - POSTGRES_USER=${postgres_user}
+      - POSTGRES_PASSWORD=${postgres_pass}
     networks: 
       - theatre
   back:
