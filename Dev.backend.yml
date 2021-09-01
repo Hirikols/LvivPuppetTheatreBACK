@@ -14,10 +14,10 @@ services:
       - "5432:5432"
     volumes: 
       - ./dubbing.sql:/docker-entrypoint-initdb.d/dubbing.sql
-    environment: 
-      - POSTGRES_DB=dubbing
-      - POSTGRES_USER=dubbing
-      - POSTGRES_PASSWORD=dubbing
+    # environment: 
+    #   - POSTGRES_DB=dubbing
+    #   - POSTGRES_USER=dubbing
+    #   - POSTGRES_PASSWORD=dubbing
     networks: 
       - theatre
   
