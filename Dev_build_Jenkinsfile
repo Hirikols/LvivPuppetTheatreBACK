@@ -20,9 +20,6 @@ options {
             }
             steps{
                 sh 'docker-compose -f Dev.backend.yml build '
-                // -e POSTGRES_PASSWORD=${postgres_pass} 
-                // -e POSTGRES_USER=${postgres_user} 
-                // -e POSTGRES_DB=${postgres_db} 
             }
         }
         stage('Run Containers'){
